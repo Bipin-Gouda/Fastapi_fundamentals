@@ -1,0 +1,29 @@
+Path parameter and Query parameter:
+
+    Path Parmeter:
+      Use Path parameters when the parameter is essential to identify the resource, they are a part of the URL path
+      and defined using {}
+    example:
+     GET /users/{user_id}
+     GET /users/123
+
+    Query Parmeter:
+      Use Query parameters for optional parameters, filters, sorting, pagination, etc (optional data). Appended after
+      '?' in the URL, can include multiple key value pairs seperated by &. Query paramter
+    example:
+      GET /users?role=admin&active=true
+          /books?genre=fiction&limit=10
+
+     There are many different "Query Parameters" used for tasks like filter, sort, paginate etc.
+      example:
+        limit - number of items to return per page (page size)
+        skip/offset - number of items to skip (starting point)
+        page - page number (alternative to skip)
+        there are many more accordingly for different tasks
+
+
+2. FastAPI is smart enough to realise if there is a param in path and it has been passed in the function with 
+  same name it is a path parameter else a Query parameter
+
+
+3. Request and Response

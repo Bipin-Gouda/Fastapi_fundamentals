@@ -1,0 +1,31 @@
+1. When creating route with parameter
+    - make sure the parameter name is same across operation and function
+
+2. When type not specified
+    Code:
+        @app.get('/blog/{id}')         
+        def blog(id):
+            return {'data':id}
+
+        output: {"data":"10"}   
+
+    Comments:
+        - "output id is a string as we get string from the URL, but we wanted an integer"
+        - we convert the string to integer by specifying type
+
+3. Need to take care of the Order of dynamic routed operators
+
+        @app.get('/blog/{id}')         
+        def show(id: int):
+            # fetch blog with id = id
+            return {'data':id}
+
+        @app.get('/blog/unpublished')
+        def unpublished():
+            return {'data':'all unpublished blogs'}
+
+        OUTPUT: (ERROR) - path 1 should be below path 2
+            Upon accessing the path '/blog/unpublished' we get an error b/c flask executes everything line by line
+            so first it will execute  @app.get('/blog/{id}') and in case of "id" it will get "unpublished" (a string)
+            so it will give ERROR. 
+            - SO we will have to keep such dynamic routing paths below the other dependent paths in Code.

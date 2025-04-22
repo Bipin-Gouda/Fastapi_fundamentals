@@ -13,3 +13,12 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL,
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush =False)
                             # binds session to the engine created, enables manual commit and autoflush
 Base = declarative_base()   # creates ORM mapping
+
+
+
+def get_db():                     
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

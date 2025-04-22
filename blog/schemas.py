@@ -31,3 +31,17 @@ class ShowBlog(BaseModel):
     class Config():                  # needed in case we dont return a dictionary and are using response_model, using db.query()
         from_attributes = True
   
+class Login(BaseModel):
+    username: str
+    password: str
+
+
+# models for JWT
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    username: str | None = None     # refers to email
